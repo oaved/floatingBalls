@@ -3,14 +3,14 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class Playground extends JPanel implements ActionListener, KeyListener {
-    private int ballAmount = 2;
+    private int ballAmount = 500;
     Ball[] balls = new Ball[ballAmount];
 
     private final Color BACKGROUND_COLOR = Color.BLACK;
     final int WIDTH = 600;
     final int HEIGHT = 600;
-    private final Coord SPAWN_1 = new Coord(1 * (WIDTH / 3), HEIGHT / 2);
-    private final Coord SPAWN_2 = new Coord(2 * (WIDTH / 3), HEIGHT / 2);
+    private final int SPAWN_WIDTH_PART = (WIDTH / (ballAmount + 1));
+    private final int SPAWN_HEIGHT = (HEIGHT / 2);
     private final Dimension PLAYGROUND_SIZE = new Dimension(WIDTH, HEIGHT);
     private final Timer timer;
 
@@ -21,16 +21,13 @@ public class Playground extends JPanel implements ActionListener, KeyListener {
         this.setFocusable(true);
         this.setBackground(BACKGROUND_COLOR);
 
-        timer = new Timer((int) (1000 / main.FPS), this);
+        timer = new Timer((int) (1000 / Main.FPS), this);
         timer.start();
 
         // Spawn all balls
         for (int i = 0; i < ballAmount; i++) {
-            if (i % 2 == 0) {
-                balls[i] = new Ball(SPAWN_1, this);
-            } else {
-                balls[i] = new Ball(SPAWN_2, this);
-            }
+            Coord spawnCoord = new Coord((i + 1) * SPAWN_WIDTH_PART, SPAWN_HEIGHT);
+            balls[i] = new Ball(spawnCoord, this);
             balls[i].move();
         }
     }

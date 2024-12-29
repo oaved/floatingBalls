@@ -1,15 +1,11 @@
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
-import javax.swing.*;
 
 public class Ball {
     private final Color COLOR = Color.WHITE;
     private final int BORDER_THICKNESS = 2;
-    public final int RADIUS = 8;
-    private final Coord NORMAL_GRAVITY = new Coord(0, 0.1);
-    private final double GRAVITY_FACTOR = 0.0005;
+    public final int RADIUS = 4;
+    private final Coord NORMAL_GRAVITY = new Coord(0, 0.15);
+    private final double GRAVITY_FACTOR = 0.0015;
     private final double VELOCITY_DAMPING = 0.99;
     private final double WALL_BOUNCE_DAMPING = 0.5;
     private final double BALL_BOUNCE_DAMPING = 0.9;
